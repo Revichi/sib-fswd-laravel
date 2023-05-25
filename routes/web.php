@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,10 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
 
 Route::get('/user', [UserController::class,'indexs']);
 
 Route::get('/edit', [UserController::class,'edit']);
 Route::get('/tambah', [UserController::class,'tambah']);
+Route::get('/dashboard', [DashboardController::class,'indexs']);
+Route::get('/produk', [ProdukController::class,'index'])->name('produk.index');
