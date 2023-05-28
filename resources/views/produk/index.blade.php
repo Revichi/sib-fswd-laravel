@@ -1,12 +1,10 @@
-@extends('layouts.mainlanding')
+@extends('layouts.main')
 
 @section('content')
     <section class="py-5">
         <div class="container-fluid px-4">
                         <h1 class="mt-4">Produk</h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Produk</li>
-                        </ol>
+                        <a class="btn btn-primary" href="{{ route('produk.create') }}">Tambah</a>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -20,14 +18,23 @@
                                                     <td>#</td>
                                                     <td>Name</td>
                                                     <td>Price</td>
-                                                    <td>Sale Price</td>                                                  
+                                                    <td>Sale Price</td>     
+                                                    <td>Brands</td>  
+                                                    <td>Rating</td>
+                                                    <td>Aksi</td>                                           
                                                 </tr>
-                                                @foreach($data as $product)
+                                                @foreach($produk as $product)
                                                 <tr>
-                                                    <td>{{$loop -> iteration}}</td>
-                                                    <td>{{ $product['name']}}</td>
-                                                    <td>{{ $product['price']}}</td>
-                                                    <td>{{ $product['sale_price']}}</td>
+                                                    <td>{{$loop ->iteration}}</td>
+                                                    <td>{{$product ->name}}</td>
+                                                    <td>{{$product ->price}}</td>
+                                                    <td>{{$product ->sale_price}}</td>
+                                                    <td>{{$product ->brands}}</td>
+                                                    <td>{{$product ->rating}}</td>
+                                                    <td>
+                                                        <a class="btn btn-warning" href="{{ route('produk.edit',$product->id) }}">Edit</a>
+                                                        <a class="btn btn-danger" href="{{ route('produk.delete',$product->id) }}">Delete</a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
                                             </th>
