@@ -2,8 +2,9 @@
 
 @section('content')
     <section class="py-5">
-        <form action="{{ route('produk.store',$produk->id) }}" method="post" >
+        <form action="{{ route('produk.update',$produk->id) }}" method="post" >
             @csrf
+            @method('PUT')
             <div class="form-group">
                 <label for="exampleInputEmail1">Category </label>
                 <select class="form-select" aria-label="Default select example" name="category_id">

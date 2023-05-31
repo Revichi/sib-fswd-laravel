@@ -36,10 +36,9 @@ class ProdukController extends Controller
    public function edit($id)
    {
       
-       $categories=Catagories::find($id);
+       $categories=Catagories::all();
        $produk = Produk::find($id);
-       return view('produk.edit', compact('produk'));
-       return view('produk.edit', compact('categories'));
+       return view('produk.edit', compact('produk','categories'));
        }
    public function update(Request $request, $id)
    {

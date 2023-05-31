@@ -3,8 +3,8 @@
 @section('content')
     <section class="py-5">
         <div class="container-fluid px-4">
-                        <h1 class="mt-4">Produk</h1>
-                        <a class="btn btn-primary" href="{{ route('produk.create') }}">Tambah</a>
+                        <h1 class="mt-4">Role</h1>
+                        <a class="btn btn-primary" href="{{ route('role.create') }}">Tambah</a>
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -17,25 +17,17 @@
                                                 <tr  class="table-dark">
                                                     <td>#</td>
                                                     <td>Name</td>
-                                                    <td>Kategori</td>
-                                                    <td>Price</td>
-                                                    <td>Sale Price</td>     
-                                                    <td>Brands</td>  
-                                                    <td>Rating</td>
+                                                    <td>Role ID</td>
                                                     <td>Aksi</td>                                           
                                                 </tr>
-                                                @foreach($produk as $product)
+                                                @foreach($role as $product)
                                                 <tr>
                                                     <td>{{$loop ->iteration}}</td>
                                                     <td>{{$product ->name}}</td>
-                                                    <td>{{$product ->category_id  }}</td>
-                                                    <td>{{$product ->price}}</td>
-                                                    <td>{{$product ->sale_price}}</td>
-                                                    <td>{{$product ->brands}}</td>
-                                                    <td>{{$product ->rating}}</td>
+                                                    <td>{{ $product ->id }}</td>
                                                     <td>
-                                                        <a class="btn btn-warning" href="{{ route('produk.edit',$product->id) }}">Edit</a>
-                                                        <a class="btn btn-danger" href="{{ route('produk.delete',$product->id) }}">Delete</a>
+                                                        <a class="btn btn-warning" href="{{ route('role.edit',$product->id) }}">Edit</a>
+                                                        <a class="btn btn-danger" href="{{ route('role.delete',$product->id) }}">Delete</a>
                                                     </td>
                                                 </tr>
                                                 @endforeach
