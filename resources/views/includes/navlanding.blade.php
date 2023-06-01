@@ -14,7 +14,7 @@
                             Cart
                             <span class="badge bg-light text-white ms-1 rounded-pill">0</span>
                         </a>
-                        <a class="btn btn-outline-light ms-1" type="submit">
+                        <a href="{{ route('login') }}" class="btn btn-outline-light ms-1" type="submit">
                             <i class="bi-person-fill me-1"></i>
                             login
                             <span class="badge bg-light text-white ms-1 rounded-pill">0</span>

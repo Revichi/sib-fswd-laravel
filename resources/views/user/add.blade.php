@@ -2,29 +2,58 @@
 
 @section('content')
     <section class="py-5">
-        <form action="{{ route('user.store') }}" method="post" >
+        <form action="{{ route('user.store') }}" method="post">
             @csrf
             <div class="form-group">
-                <label for="exampleInputEmail1">Role </label>
-                <select class="form-select" aria-label="Default select example" name="role_id">
-                    @foreach($role as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                <label for="role_id">Role</label>
+                <select class="form-select @error('role_id') is-invalid @enderror" aria-label="Default select example" name="role_id" id="role_id">
+                    @foreach($role as $roles)
+                        <option value="{{ $roles->id }}">{{ $roles->name }}</option>
                     @endforeach
-                  </select>
+                </select>
+                @error('role_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Enter Role Name" required>
-                </div>
-            <div class="form-group">
-                <label for="name">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Enter Email" required>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" placeholder="Enter Name" >
+                @error('name')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="form-group">
-                <label for="name">Phone</label>
-                <input type="number" class="form-control" id="phone" name="phone" placeholder="Enter phone" required>
+                <label for="email">Email</label>
+                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Enter Email" >
+                @error('email')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" placeholder="Enter Password" >
+                @error('password')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control @error('phone') is-invalid @enderror" id="phone" name="phone" placeholder="Enter Phone" >
+                @error('phone')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </section>
 @endsection
-

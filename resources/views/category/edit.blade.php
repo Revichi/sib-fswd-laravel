@@ -2,15 +2,19 @@
 
 @section('content')
     <section class="py-5">
-        <form action="{{ route('category.update',$category->id) }}" method="post" >
+        <form action="{{ route('category.update', $category->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group">
                 <label for="name">Category Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" required>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $category->name }}" >
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </section>
 @endsection
-

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -24,9 +26,16 @@ class UserController extends Controller
             'role_id' => 'required',
             'name' => 'required',
             'email' => 'required',
+            'password' => 'required',
             'phone'=> 'required'
           ]);
-        User::create($request->all());
+        User::create([
+            'role_id' => $request->role_id,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'phone' => $request->phone
+        ]);
         return redirect()->route('user.index')->with('success', 'user Inserted Successfully');
     }
     public function edit($id)
@@ -41,12 +50,14 @@ class UserController extends Controller
             'role_id' => 'required',
             'name' => 'required',
             'email' => 'required',
+            'password' => 'required',
             'phone'=> 'required'
             ]);
             $user = User::find($id);
             $user->role_id = $request->role_id;
             $user->name = $request->name;
             $user->email = $request->email;
+            $user->password = Hash::make($request->password);
             $user->phone = $request->phone;
             $user->save();
             return redirect()->route('user.index')->with('success', 'user Updated Successfully');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produk;
 use App\Models\Catagories;
+use Illuminate\Support\Facades\Validator;
 
 class ProdukController extends Controller
 {
@@ -20,18 +21,28 @@ class ProdukController extends Controller
    }
    public function store(Request $request)
    {
-       $request->validate([
-         'category_id'=> 'required',
-         'name' => 'required',
-         'price' => 'required',
-         'sale_price' => 'required',
-         'brands' => 'required',
-         'rating' => 'required'
+        $validator = Validator::make($request->all(), [
+          'category_id'=> 'required',
+         'name' => 'required|string',
+         'price' => 'required|integer',
+         'sale_price' => 'required|integer',
+         'brands' => 'required|string',
+         'rating' => 'required|integer'
        ]);
+       if($validator->fails()){
+        return redirect()->back()->withErrors($validator->errors());
+       }
        
-       Produk::create($request->all());
+      $produk= Produk::create([
+        'category_id' => $request->category_id,
+        'name' => $request->name,
+        'price' => $request->price,
+        'sale_price' => $request->sale_price,
+        'brands' => $request->brands,
+        'rating' => $request->rating
+      ]);
        
-       return redirect()->route('produk.index')->with('success', 'produk Inserted Successfully');
+       return redirect()->route('produk.index');
    }
    public function edit($id)
    {
@@ -43,12 +54,12 @@ class ProdukController extends Controller
    public function update(Request $request, $id)
    {
        $request->validate([
-         'category_id'=> 'required',
-         'name' => 'required',
-         'price' => 'required',
-         'sale_price' => 'required',
-         'brands' => 'required',
-         'rating' => 'required'
+        'category_id'=> 'required',
+        'name' => 'required|string',
+        'price' => 'required|integer',
+        'sale_price' => 'required|integer',
+        'brands' => 'required|string',
+        'rating' => 'required|integer'
 
            ]);
            $produk = Produk::find($id);

@@ -2,12 +2,12 @@
 
 @section('content')
     <section class="py-5">
-        <form action="{{ route('role.update', $role->id) }}" method="post">
+        <form action="{{ route('brands.update', $brands->id) }}" method="post">
             @csrf
             @method('PUT')
             <div class="form-group">
-                <label for="name">Role Name</label>
-                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $role->name }}" >
+                <label for="name">Brand Name</label>
+                <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $brands->name }}">
                 @error('name')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
