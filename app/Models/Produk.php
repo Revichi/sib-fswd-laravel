@@ -15,7 +15,8 @@ class Produk extends Model
         'price',
         'sale_price',
         'brands',
-        'rating'
+        'rating',
+        'image'
     ];
     public function catagories()
     {

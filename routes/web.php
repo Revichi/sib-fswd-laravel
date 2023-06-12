@@ -10,6 +10,7 @@ use App\Http\Controllers\SliderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\BrandsController;
+use App\Http\Controllers\LandingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ use App\Http\Controllers\BrandsController;
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/', [LandingController::class,'index'])->name('landing');
 
 Route::get('/login', [LoginController::class,'index'])->name('login');
 Route::post('/login', [LoginController::class,'authenticate'])->name('authenticate');

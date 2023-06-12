@@ -2,7 +2,7 @@
 
 @section('content')
     <section class="py-5">
-        <form action="{{ route('produk.store') }}" method="post" >
+        <form action="{{ route('produk.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="exampleInputEmail1">Category </label>
@@ -62,6 +62,12 @@
                 </span>
                 @enderror
             </div>
+            <div class="form-group">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">File Image</label>
+                    <input class="form-control" type="file" id="image" name="image">
+                  </div>
+                </div>
             <br>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

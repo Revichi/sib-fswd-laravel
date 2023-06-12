@@ -48,7 +48,8 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'sale_price' => 'required|integer',
             'brands' => 'required|string',
-            'rating' => 'required|integer'
+            'rating' => 'required|integer',
+            'image' => 'string'
         ]);
 
         if ($validator->fails()) {
@@ -65,7 +66,8 @@ class ProductController extends Controller
             'price' => $request->price,
             'sale_price' => $request->sale_price,
             'brands' => $request->brands,
-            'rating' => $request->rating
+            'rating' => $request->rating,
+            'image' => $request->image
         ]);
 
         return response()->json([

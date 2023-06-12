@@ -22,6 +22,7 @@
                                                     <td>Sale Price</td>     
                                                     <td>Brands</td>  
                                                     <td>Rating</td>
+                                                    <td>Image</td>
                                                     <td>Aksi</td>                                           
                                                 </tr>
                                                 @foreach($produk as $product)
@@ -33,6 +34,13 @@
                                                     <td>{{$product ->sale_price}}</td>
                                                     <td>{{$product ->brands}}</td>
                                                     <td>{{$product ->rating}}</td>
+                                                    <td>
+                                                        @if ($product->image==null)
+                                                            <span class="badge bg-primary">No Image</span>
+                                                        @else
+                                                        <img src="{{ asset('storage/produk/' . $product->image) }}" alt="{{$product ->image}}" style="max-width: 50px">
+                                                        @endif
+                                                    </td>
                                                     <td>
                                                         <a class="btn btn-warning" href="{{ route('produk.edit',$product->id) }}">Edit</a>
                                                         <a class="btn btn-danger" href="{{ route('produk.delete',$product->id) }}">Delete</a>
